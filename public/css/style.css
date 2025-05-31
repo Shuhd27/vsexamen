@@ -1,4 +1,3 @@
-
 /* Algemene reset */
 /* Homepage */
 * {
@@ -202,4 +201,24 @@ body {
   margin-bottom: 20px;
   border-radius: 4px;
   color: #c62828;
+}
+
+
+/* contact page style */
+.form-control {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  line-height: 1.5;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  box-sizing: border-box;
+  height: 50px;
+}
+
+textarea.form-control {
+  height: 50px;
+  /* Zelfde hoogte als input */
+  resize: none;
+  /* Optioneel: voorkomt vergroten van tekstvak */
 }

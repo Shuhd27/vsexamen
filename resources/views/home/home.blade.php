@@ -18,21 +18,22 @@
     <div class="logo">SportLessen</div>
     <ul class="nav-links">
       <li><a href="{{ ('/') }}">Home</a></li>
-      <li><a href="#">Boek een les</a></li>
-      <li><a href="#">Instructeurs</a></li>
+      <li><a href="{{ route('packages.index') }}">Boek een les</a></li>
+      <!-- <li><a href="#">Instructeurs</a></li> -->
       <li><a href="{{ route('availabilities.index') }}">Beschikbaarheid</a></li>
-      <li><a href="{{ route('login') }}"
+      <!-- <li><a href="{{ route('login') }}"
       class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">Inloggen</a></li>
       <li><a href="{{ route('register') }}"
-      class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">Registreren</a></li>
-      <li><a href="#">Contact</a></li>
+      class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">Registreren</a></li> -->
+      <li><a href="{{ route('contacts.index') }}">Contact</a></li>
+      <li><a href="{{ route('registrations.index') }}">ADMIN</a></li>
     </ul>
   </nav>
 
   <section class="hero">
     <h1>Welkom bij SportLessen</h1>
     <p>Boek eenvoudig sportlessen, beheer je beschikbaarheid als instructeur, of houd overzicht als beheerder.</p>
-    <a href="#" class="cta-button">Boek nu een les</a>
+    <a href="{{ route('packages.index') }}" class="cta-button">Boek nu een les</a>
   </section>
 
   <main class="main-content">

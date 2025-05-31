@@ -14,4 +14,9 @@ class Package extends Model
         'price',
         'lessons_count', // total number of lessons included in the package
     ];
+
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }
 }
