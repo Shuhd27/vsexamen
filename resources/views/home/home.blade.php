@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SportLessen</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 </head>
 <body>
   <header class="topbar">
@@ -14,19 +14,17 @@
     </div>
   </header>
 
-  <nav class="navbar">
+  <nav class="navbar" role="navigation">
     <div class="logo">SportLessen</div>
     <ul class="nav-links">
-      <li><a href="{{ ('/') }}">Home</a></li>
+      <li><a href="{{ url('/') }}">Home</a></li>
       <li><a href="{{ route('packages.index') }}">Boek een les</a></li>
-      <!-- <li><a href="#">Instructeurs</a></li> -->
       <li><a href="{{ route('availabilities.index') }}">Beschikbaarheid</a></li>
-      <!-- <li><a href="{{ route('login') }}"
-      class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">Inloggen</a></li>
-      <li><a href="{{ route('register') }}"
-      class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">Registreren</a></li> -->
       <li><a href="{{ route('contacts.index') }}">Contact</a></li>
-      <li><a href="{{ route('registrations.index') }}">ADMIN</a></li>
+      
+      @auth
+          <li><a href="{{ route('registrations.index') }}">ADMIN</a></li>
+      @endauth
     </ul>
   </nav>
 

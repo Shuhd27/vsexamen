@@ -37,8 +37,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Registration routes (pakketten kopen)
-Route::get('/registrations', [RegistrationController::class, 'create'])->name('registrations.create');
+Route::get('/registrations/create', [RegistrationController::class, 'create'])->name('registrations.create');
 Route::post('/registrations', [RegistrationController::class, 'store'])->name('registrations.store');
+
+
 
 
 
