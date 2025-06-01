@@ -20,13 +20,10 @@
     <div class="logo">SportLessen</div>
     <ul class="nav-links">
       <li><a href="{{ url('/') }}">Home</a></li>
-      <li><a href="{{ route('packages.index') }}">Boek een les</a></li>
+      <li><a href="{{  route('packages.index')  }}">Boek een les</a></li>
       <!-- <li><a href="{{ route('availabilities.index') }}">Beschikbaarheid</a></li> -->
       <li><a href="{{ route('contacts.index') }}">Contact</a></li>
       <li><a href="{{ route('dashboard') }}">ADMIN</a></li>
-      <!-- @auth
-        <li><a href="{{ route('registrations.index') }}">ADMIN</a></li>
-      @endauth -->
     </ul>
   </nav>
 
@@ -40,11 +37,11 @@
     <section class="features">
       <h2>Waarom kiezen voor SportLessen?</h2>
       <ul>
-        <li>Eenvoudig lessen boeken en annuleren</li>
+        <li>Eenvoudig lessen boeken en annuleren (annuleren via contacten)</li>
         <li>Instructeurs beheren zelf hun beschikbaarheid</li>
         <li>Beheerders kunnen reserveringen aanpassen</li>
-        <li>Beveiligd inloggen met versleutelde wachtwoorden</li>
-        <li>Automatische bevestiging per e-mail</li>
+        <!-- <li>Beveiligd inloggen met versleutelde wachtwoorden</li>
+        <li>Automatische bevestiging per e-mail</li> -->
       </ul>
     </section>
   </main>

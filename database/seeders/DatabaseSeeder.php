@@ -10,7 +10,11 @@ use App\Models\Reservation;
 use App\Models\Lesson;
 use App\Models\Availability;
 use App\Models\Role;
+use App\Models\Subscription;
 use Database\Seeders\PackageSeeder;
+use Database\Seeders\SubscriptionsSeeder; // Uncomment if you have a SubscriptionsSeeder
+// use Database\Seeders\RoleSeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -41,5 +45,6 @@ class DatabaseSeeder extends Seeder
         Lesson::factory(5)->create();
         Availability::factory(5)->create();
         Role::factory(5)->create();
+        Subscription::factory(5)->create();
     }
 }

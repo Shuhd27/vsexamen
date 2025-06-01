@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <div class="container availability-form">
-        <h1>Neem contact met ons op</h1>
+        <h1>Inschrijven voor jouw pakket</h1>
 
         @if(session('success'))
         <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin-bottom: 1rem;">
@@ -21,13 +21,15 @@
         </div>
         @endif
 
-
-        <form action="{{ route('contacts.store') }}" method="POST">
+        <form action="{{ route('subscriptions.store') }}" method="POST">
             @csrf
 
+            {{-- Verborgen veld voor het gekozen pakket --}}
+            <input type="hidden" name="package_id" value="{{ request('package_id') }}">
+
             <div class="mb-3">
-                <label for="naam" class="form-label">Naam</label>
-                <input type="text" name="naam" id="naam" class="form-control" value="{{ old('naam') }}" required>
+                <label for="name" class="form-label">Naam</label>
+                <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" required>
             </div>
 
             <div class="mb-3">
@@ -36,16 +38,11 @@
             </div>
 
             <div class="mb-3">
-                <label for="telefoon" class="form-label">Telefoonnummer (optioneel)</label>
-                <input type="tel" name="telefoon" id="telefoon" class="form-control" value="{{ old('telefoon') }}">
+                <label for="phone" class="form-label">Telefoonnummer (optioneel)</label>
+                <input type="tel" name="phone" id="phone" class="form-control" value="{{ old('phone') }}">
             </div>
 
-            <div class="mb-3">
-                <label for="bericht" class="form-label">Bericht</label>
-                <textarea name="bericht" id="bericht" class="form-control" rows="5" required>{{ old('bericht') }}</textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Verstuur bericht</button>
+            <button type="submit" class="btn btn-primary">Start met lessen</button>
             <a href="{{ url('/') }}" class="btn btn-secondary">Annuleren</a>
         </form>
     </div>

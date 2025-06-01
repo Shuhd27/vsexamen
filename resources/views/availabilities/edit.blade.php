@@ -1,4 +1,9 @@
 <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Beschikbaarheid Bewerken') }}
+        </h2>
+    </x-slot>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <div class="container availability-form">
         <h1>Beschikbaarheid Bewerken</h1>
@@ -23,7 +28,7 @@
 
             <div class="mb-3">
                 <label for="instructor_name" class="form-label">Naam instructeur</label>
-                <input type="text" name="instructor_name" id="instructor_name" class="form-control" 
+                <input type="text" name="instructor_name" id="instructor_name" class="form-control"
                     value="{{ old('instructor_name', $availability->instructor_name) }}" required>
             </div>
 

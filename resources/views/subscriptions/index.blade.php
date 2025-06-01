@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Beschikbaarheid') }}
+            {{ __('Inschrijvingen') }}
         </h2>
     </x-slot>
 
@@ -9,7 +9,7 @@
         <!-- Titelbalk -->
         <section class="w-11/12 md:w-3/4 mx-auto mb-8">
             <div class="bg-[#004d40] p-6 rounded-xl shadow text-white text-center md:text-left">
-                <h3 class="text-2xl font-bold">Beschikbaarheden</h3>
+                <h3 class="text-2xl font-bold">Gekozen pakketten</h3>
             </div>
         </section>
 
@@ -20,7 +20,6 @@
                 {{ session('success') }}
             </div>
             @endif
-
             @if(session('error'))
             <div class="bg-red-100 text-red-800 px-4 py-3 rounded shadow mb-4">
                 {{ session('error') }}
@@ -28,41 +27,45 @@
             @endif
         </section>
 
-        <!-- Toevoegen knop -->
-        <div class="w-11/12 md:w-3/4 mx-auto flex justify-end mb-6">
-            <a href="{{ route('availabilities.create') }}"
-                class="bg-[#00796b] hover:bg-[#004d40] text-white text-lg font-semibold px-6 py-2 rounded shadow transition-all">
-                + Nieuwe beschikbaarheid
-            </a>
-        </div>
-        <!-- Beschikbaarheid Tabel -->
+        <!-- Inschrijvingen Tabel -->
         <section class="w-11/12 md:w-3/4 mx-auto">
-            @if($availabilities->isEmpty())
+            @if(empty($subscriptions) || count($subscriptions) === 0)
             <div class="text-center text-red-600 px-6 py-4 bg-white shadow rounded-xl">
-                Er zijn nog geen beschikbaarheden.
+                Er zijn nog geen inschrijvingen.
             </div>
             @else
             <div class="overflow-x-auto bg-white shadow rounded-xl">
                 <table class="w-full text-left text-[#4F4F4F]">
                     <thead class="bg-[#00796b] text-white uppercase">
                         <tr>
-                            <th class="px-6 py-4 border-r border-gray-300">Instructor Naam</th>
-                            <th class="px-6 py-4 border-r border-gray-300">Status</th>
+                            <th class="px-6 py-4 border-r border-gray-300">Naam</th>
+                            <th class="px-6 py-4 border-r border-gray-300">E-mail</th>
+                            <th class="px-6 py-4 border-r border-gray-300">Telefoon</th>
+                            <th class="px-6 py-4 border-r border-gray-300">Gekozen Pakket</th>
+                            <th class="px-6 py-4 border-r border-gray-300">Aantal Lessen</th>
+                            <th class="px-6 py-4 border-r border-gray-300">Prijs (€)</th>
                             <th class="px-6 py-4">Acties</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($availabilities as $availability)
+                        @foreach ($subscriptions as $subscription)
                         <tr class="border-t border-gray-200 hover:bg-gray-50">
-                            <td class="px-6 py-4 border-r border-gray-300">{{ $availability->instructor_name ?? '-' }}</td>
-                            <td class="px-6 py-4 border-r border-gray-300">{{ ucfirst($availability->status) }}</td>
+                            <td class="px-6 py-4 border-r border-gray-300">{{ $subscription->Naam }}</td>
+                            <td class="px-6 py-4 border-r border-gray-300">{{ $subscription->Email }}</td>
+                            <td class="px-6 py-4 border-r border-gray-300">{{ $subscription->Telefoon ?? '-' }}</td>
+                            <td class="px-6 py-4 border-r border-gray-300">{{ $subscription->pakket_naam ?? 'Onbekend pakket' }}</td>
+                            <td class="px-6 py-4 border-r border-gray-300">{{ $subscription->aantal_lessons ?? '-' }}</td>
+                            <td class="px-6 py-4 border-r border-gray-300">
+                                {{ $subscription->pakket_prijs !== null ? number_format($subscription->pakket_prijs, 2, ',', '.') : '-' }}
+                            </td>
                             <td class="px-6 py-4 flex gap-2">
-                                <a href="{{ route('availabilities.edit', $availability->id) }}"
+                                <a href="{{ route('subscriptions.edit', $subscription->subscription_id) }}"
                                     class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded shadow text-sm">
                                     Bewerken
                                 </a>
+
                                 <button type="button"
-                                    onclick="openModal({{ $availability->id }})"
+                                    onclick="openModal({{ $subscription->subscription_id }})"
                                     class="bg-red-400 hover:bg-red-500 text-white px-3 py-1 rounded shadow text-sm">
                                     Verwijderen
                                 </button>
@@ -99,17 +102,20 @@
     </main>
 
     <script>
-        function openModal(id) {
+        function openModal(subscriptionId) {
             const modal = document.getElementById('confirmDeleteModal');
             const form = document.getElementById('deleteForm');
 
-            form.action = `/availabilities/${id}`;
+            // Dynamische route genereren
+            form.action = `/subscriptions/${subscriptionId}`;
 
             modal.classList.remove('hidden');
         }
 
         function closeModal() {
-            document.getElementById('confirmDeleteModal').classList.add('hidden');
+            const modal = document.getElementById('confirmDeleteModal');
+            modal.classList.add('hidden');
         }
     </script>
+
 </x-app-layout>

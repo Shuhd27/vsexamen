@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('registrations', function (Blueprint $table) {
+        Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('package_id');
             $table->string('name');
             $table->string('email');
             $table->string('phone')->nullable();
             $table->timestamps();
+
+            // Foreign key constraint (optioneel, maar aanbevolen)
+            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('registrations');
+        Schema::dropIfExists('subscriptions');
     }
 };

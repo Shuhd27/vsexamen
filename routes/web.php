@@ -6,8 +6,9 @@ use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PackageController;
-use App\Http\Controllers\RegistrationController;
-
+use App\Http\Controllers\SubscriptionController;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('home/home');
 });
@@ -33,12 +34,14 @@ Route::get('/packages', [PackageController::class, 'index'])->name('packages.ind
 
 // Admin routes voor packages die zijn verkocht
 Route::middleware(['auth'])->group(function () {
-    Route::get('/registrations', [RegistrationController::class, 'index'])->name('registrations.index');
+    Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
+    Route::get('/subscriptions/{id}/edit', [SubscriptionController::class, 'edit'])->name('subscriptions.edit');
+    Route::put('/subscriptions/{id}', [SubscriptionController::class, 'update'])->name('subscriptions.update');
+    Route::delete('/subscriptions/{id}', [SubscriptionController::class, 'destroy'])->name('subscriptions.destroy');
 });
 
-// Registration routes (pakketten kopen)
-Route::get('/registrations/create', [RegistrationController::class, 'create'])->name('registrations.create');
-Route::post('/registrations', [RegistrationController::class, 'store'])->name('registrations.store');
+Route::get('/subscriptions/create', [SubscriptionController::class, 'create'])->name('subscriptions.create');
+Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions.store');
 
 
 

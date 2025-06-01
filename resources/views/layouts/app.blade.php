@@ -20,21 +20,21 @@
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
 
         @php
-            $routesMetLaravelNavbar = ['registrations.index', 'availabilities.index', 'dashboard'];
+        $routesMetLaravelNavbar = ['subscriptions.index', 'subscriptions.edit', 'availabilities.index', 'availabilities.create', 'availabilities.edit', 'dashboard'];
         @endphp
 
         {{-- Laravel navbar alleen tonen als ingelogd én op een van de genoemde routes --}}
         @auth
         @if (in_array(Route::currentRouteName(), $routesMetLaravelNavbar))
-            @include('layouts.navigation')
+        @include('layouts.navigation')
         @else
-            @include('partials._navbar') {{-- Eigen navbar tonen op alle andere routes --}}
+        @include('partials._navbar') {{-- Eigen navbar tonen op alle andere routes --}}
         @endif
         @endauth
 
         {{-- Eigen navbar altijd voor gasten --}}
         @guest
-            @include('partials._navbar')
+        @include('partials._navbar')
         @endguest
 
 

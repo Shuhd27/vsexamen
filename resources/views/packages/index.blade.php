@@ -27,7 +27,7 @@
                     </p>
                 </div>
 
-                <a href="{{ route('registrations.create', ['package_id' => $package['id']]) }}"
+                <a href="{{ route('subscriptions.create', ['package_id' => $package['id']]) }}"
                    class="inline-block bg-[#00796b] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#004d40] focus:outline-none focus:ring-4 focus:ring-[#004d40]/50 transition">
                     Kies dit pakket
                 </a>

@@ -11,21 +11,21 @@ return new class extends Migration
     public function up(): void
     {
         DB::unprepared('
-            DROP PROCEDURE IF EXISTS GetRegistrationsWithPackages;
+            DROP PROCEDURE IF EXISTS GetSubscriptionsWithPackages;
 
-            CREATE PROCEDURE GetRegistrationsWithPackages()
+            CREATE PROCEDURE GetSubscriptionsWithPackages()
             BEGIN
                 SELECT 
-                    r.id AS registration_id,
-                    r.name AS Naam,
-                    r.email AS Email,
-                    r.phone AS Telefoon,
+                    s.id AS subscription_id,
+                    s.name AS Naam,
+                    s.email AS Email,
+                    s.phone AS Telefoon,
                     p.name AS pakket_naam,
                     p.price AS pakket_prijs,
                     p.lessons_count AS aantal_lessons
-                FROM registrations r
-                INNER JOIN packages p ON r.package_id = p.id
-                ORDER BY r.name ASC;
+                FROM subscriptions s
+                INNER JOIN packages p ON s.package_id = p.id
+                ORDER BY s.name ASC;
             END
         ');
     }
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::unprepared('DROP PROCEDURE IF EXISTS GetRegistrationsWithPackages;');
+        DB::unprepared('DROP PROCEDURE IF EXISTS GetSubscriptionsWithPackages;');
     }
 };

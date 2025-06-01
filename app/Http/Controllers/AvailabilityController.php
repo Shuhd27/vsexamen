@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Auth;
 class AvailabilityController extends Controller
 {
     // Index: lijst van beschikbaarheden pagineren
-    public function index(Request $request)
+    public function index()
     {
-        $availabilities = Availability::with(['user', 'package'])
-            ->paginate(25);
+        $availabilities = Availability::all();  // Load all availabilities
 
         return view('availabilities.index', compact('availabilities'));
     }
+
 
     // Create: formulier tonen
     public function create()
