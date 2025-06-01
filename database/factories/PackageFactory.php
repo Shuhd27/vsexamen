@@ -16,8 +16,11 @@ class PackageFactory extends Factory
      */
     public function definition(): array
     {
+        // Define the possible package names inside the method
+        $names = ['Beginner', 'Gevorderd', 'Pro', 'All-in'];
         return [
-            'price' => $this->faker->randomFloat(2, 50, 500), // Random price between 50 and 500
+            'name' => $this->faker->randomElement($names),
+            'price' => $this->faker->randomFloat(2, 199, 649), // Random price between 50 and 500
             'lessons_count' => $this->faker->numberBetween(5, 20), // Random number of lessons between 5 and 20
         ];
     }

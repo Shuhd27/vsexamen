@@ -10,6 +10,7 @@ use App\Models\Reservation;
 use App\Models\Lesson;
 use App\Models\Availability;
 use App\Models\Role;
+use Database\Seeders\PackageSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,8 +19,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(PackageSeeder::class);
+
+        // Andere seeders (indien nodig)
         // $this->call(RoleSeeder::class);
-        // $this->call(PackageSeeder::class);
         // $this->call(ReservationSeeder::class);
         // $this->call(LessonSeeder::class);
         // $this->call(AvailabilitySeeder::class);
@@ -31,7 +34,9 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1,
         ]);
 
-        Package::factory(5)->create();
+        // Verwijder deze regel omdat enum veld beperkt is
+        // Package::factory(5)->create();
+
         Reservation::factory(5)->create();
         Lesson::factory(5)->create();
         Availability::factory(5)->create();

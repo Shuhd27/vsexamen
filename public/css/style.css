@@ -222,3 +222,90 @@ textarea.form-control {
   resize: none;
   /* Optioneel: voorkomt vergroten van tekstvak */
 }
+
+/* Inschrijfformulier stijl */
+.registration-form {
+  background-color: #ffffff;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 121, 107, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.registration-form h1 {
+  font-size: 2rem;
+  color: #00796b;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.registration-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #004d40;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form input[type="tel"] {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  height: 45px;
+}
+
+.registration-form input[type="text"]:focus,
+.registration-form input[type="email"]:focus,
+.registration-form input[type="tel"]:focus {
+  border-color: #00796b;
+  box-shadow: 0 0 6px rgba(0, 121, 107, 0.5);
+  outline: none;
+}
+
+.registration-form .text-red-600 {
+  color: #d32f2f;
+  margin-top: -15px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Submit button */
+.registration-form .btn-submit {
+  background-color: #00796b;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 14px 30px;
+  font-size: 1.125rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgba(0, 121, 107, 0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 320px;
+  display: block;
+  margin: 0 auto;
+}
+
+.registration-form .btn-submit:hover {
+  background-color: #004d40;
+  box-shadow: 0 6px 14px rgba(0, 77, 64, 0.7);
+}
+
+/* Center button container */
+.registration-form .text-center {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}

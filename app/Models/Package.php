@@ -11,6 +11,7 @@ class Package extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name', // name of the package
         'price',
         'lessons_count', // total number of lessons included in the package
     ];

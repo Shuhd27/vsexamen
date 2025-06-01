@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Registration;
 use App\Models\Package;
+use Illuminate\Support\Facades\DB;
 
 class RegistrationController extends Controller
 {
@@ -13,7 +14,7 @@ class RegistrationController extends Controller
     public function index()
     {
         // Haal alle registraties op met de bijbehorende pakketten (relatie)
-        $registrations = Registration::with('package')->get();
+        $registrations = DB::select('CALL GetRegistrationsWithPackages()');
 
         // Return een view met de registraties
         return view('registrations.index', compact('registrations'));
@@ -23,14 +24,11 @@ class RegistrationController extends Controller
     public function create(Request $request)
     {
         $packageId = $request->query('package_id');
+        $package = $packageId ? Package::findOrFail($packageId) : null;
 
-        // Controleer of het pakket bestaat, anders redirect met foutmelding
-        if ($packageId && !Package::find($packageId)) {
-            return redirect()->route('packages.index')->withErrors('Gekozen pakket bestaat niet.');
-        }
-
-        return view('registrations.create', compact('packageId'));
+        return view('registrations.create', compact('package'));
     }
+
 
     public function store(Request $request)
     {
@@ -44,6 +42,7 @@ class RegistrationController extends Controller
         // Maak nieuwe registratie aan met alleen de gevalideerde data
         Registration::create($validatedData);
 
-        return redirect()->route('packages.index')->with('success', 'Inschrijving succesvol!');
+        return redirect('/')
+        ->with('success', 'Inschrijving succesvol! We nemen zo snel mogelijk contact met je op.');
     }
 }
